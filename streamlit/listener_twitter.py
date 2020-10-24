@@ -4,6 +4,8 @@ import time
 from sqlalchemy import create_engine, text
 from textblob import TextBlob
 import pandas as pd
+import streamlit as st
+
 # Override tweepy.StreamListener to add logic to on_status
 class TwStreamListener(tweepy.StreamListener):
     #engine = create_engine('postgresql+psycopg2://ds4a_ado:ado@ds4a-extended.cqwg91rhslbj.us-east-1.rds.amazonaws.com/twitterdb', max_overflow=20)
@@ -96,8 +98,8 @@ class TwStreamListener(tweepy.StreamListener):
             estado = "Feliz"
         else:
             estado = "Triste"
-        
-        print("Twitter: {}, estado: {}".format(status.text, estado))
+            
+        st.write("Twitter: {}, estado: {}".format(status.text, estado))
         #print("Long: {}, Lati: {}".format(longitude, latitude))
         
         # Store all data in Postgres
@@ -123,7 +125,7 @@ class TwStreamListener(tweepy.StreamListener):
             #print("Working")
             return True
         else:
-            print("Time Complete")
+            #print("Time Complete")
             return False
     
     
@@ -156,10 +158,10 @@ class TwStreamListener(tweepy.StreamListener):
     
     def disconnect(self):
         self.mydb.close()
-        return print("Stop Streaming")
+        #return print("Stop Streaming")
     
     def run(self, TRACK_WORDS, LOCATION_SEARCH):
-        print("Start Streaming")
+        #print("Start Streaming")
         # Languaje Español: es 
         self.myStream.filter(languages=["es"], track = TRACK_WORDS, locations = LOCATION_SEARCH)
         time.sleep(self.runtime)

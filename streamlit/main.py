@@ -6,6 +6,7 @@ import seaborn as sns
 import sklearn.metrics as Metrics
 import pandas as pd
 import matplotlib.pyplot as plt
+from listener_twitter import TwStreamListener
 
 class DF_prep:
 
@@ -140,6 +141,11 @@ sectores = ['a.1. educacion', 'a.2. salud', 'a.18. justicia y seguridad', 'a.10.
 
 df_cleaned = df_cleaned[df_cleaned['sector'].isin(sectores)]
 
+
+
+
+
+
 st.write("# **Bello**")
 
 fig, ax = plt.subplots(figsize=(12, 5))
@@ -167,3 +173,11 @@ for item in graph.get_xticklabels():
     item.set_rotation(90)
 st.write("## **SECTOR SALUD:**")
 st.pyplot(fig)
+
+st.write("# **TWITTER - Example (Seguridad) - Alcaldia de Bello**")
+
+myStreamListener = TwStreamListener()
+myStreamListener.connect()
+TRACK_WORDS = ['seguridad']
+LOCATION_BELLO = [-75.623604,6.303511,-75.493611,6.373763]
+myStreamListener.run(TRACK_WORDS, LOCATION_BELLO)
