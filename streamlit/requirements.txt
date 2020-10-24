@@ -91,3 +91,10 @@ wcwidth==0.2.5
 webencodings==0.5.1
 widgetsnbextension==3.5.1
 zipp==3.3.2
+tweepy
+psycopg2-binary
+sqlalchemy
+nltk
+textblob
+dash
+plotly
