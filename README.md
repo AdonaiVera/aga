@@ -2,11 +2,13 @@
 
 Present historical information of the development plan of the municipality of Bello - Antioquia to facilitate the vision, and support the management of its administration.
 
-## Comenzando 🚀
+## Arquitectura 🚀
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
 Mira **Deployment** para conocer como desplegar el proyecto.
+![Alt text](images/Diagrama.jpg?raw=true "Title")
+
 
 
 ### Pre-requisitos 📋
