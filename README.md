@@ -85,7 +85,7 @@ Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones
 * **Natalia Castilla Reyes** - *Member DS4a* - [ancastillar](https://github.com/ancastillar)
 * **Olga Angulo** - *Member DS4a* - [Olucya](https://github.com/Olucya)
 * **Jhon Rodriguez** - *Member DS4a* - [Lauravlopez](https://github.com/Lauravlopez)
-* **Migue Jurado** - *Member DS4a* - [Lauravlopez](https://github.com/Lauravlopez)
+* **Migue Jurado** - *Member DS4a* - [Miguel Jurado](https://github.com/migeruj)
 * **Adonai Vera** - *Member DS4a* - [AdonaiVera](https://github.com/AdonaiVera)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/AdonaiVera/Bello/contributors) quíenes han participado en este proyecto. 
