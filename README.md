@@ -67,6 +67,27 @@ Da un ejemplo
 
 _Agrega notas adicionales sobre como hacer deploy_
 
+## Twitter 🖥
+A continuación se algunos ejemplos de twitter en el área de seguridad. 
+------
+1. RT @EmpresarioVox: El Gobierno oculta que estamos totalmente a la deriva. Hace meses saltó la alarma en la Seguridad Social porque el gasto…
+2. RT @laurxweird: "conocí a esta belleza cuando estaba protegiendo a un hombre sin hogar de ser acosado por alguien de seguridad"
+Esta es mi…
+3. RT @CIDH: Por último, la #CIDH reitera al Estado las recomendaciones formuladas durante su reciente visita in loco, especialmente la de lle…
+4. RT @GNB_Sucre: #OperaciónGarraOriental2020 
+Nuestros efectivos trabajan de manera articulada con cuerpos policiales para velar por tu segur…
+5. RT @Lautafym: La pandemia de las fuerzas de seguridad del mundo tiene mucho más tiempo de vigencia que cualquier otra. Es más difícil de cu…
+6. RT @diario24horas: El presidente Andrés Manuel López Obrador elogió el trabajo realizado por titular de la Secretaría de Seguridad y Protec…
+7. RT @lqmhr: Tenemos un Canciller que no habla inglés. Es como tener, no sé, una antropóloga como Ministra de Seguridad.
+Espero no leer vuestros tweets hablando sobre las medidas de seguridad cuando sois los primeros que no las cumplís máquinas
+8. RT @Millerrojas19: @RicardoMolanoV1 @qmoncaleano @MdeFrancisco12 @fdbedout @MeDicenWally Comparto. Totalmente
+En Colombia alcanzan un cargo…
+9. RT @lvillavicenciom: autoridad civil, es que sus miembros son formados ideológicamente bajo los estertores de la doctrina de la seguridad n…
+
+
+
+--------
+
 ## Construido con 🛠️
 
 _Menciona las herramientas que utilizaste para crear tu proyecto_
