@@ -128,8 +128,42 @@ class DF_prep:
 
 
 
-path = 'url'
+path = 'https://raw.githubusercontent.com/AdonaiVera/Bello/developer/data/Indicadores_2016-2017-2018-2019.csv'
 
 cleaner_obj = DF_prep()
 cleaner_obj.load_file(path)	# si tiene un dataframe puede usar load_df(df)
 cleaner_obj.process_df()
+
+df_cleaned = cleaner_obj.get_clean_df()
+
+sectores = ['a.1. educacion', 'a.2. salud', 'a.18. justicia y seguridad', 'a.10. ambiental']
+
+df_cleaned = df_cleaned[df_cleaned['sector'].isin(sectores)]
+
+st.write("# **Bello**")
+
+fig, ax = plt.subplots(figsize=(12, 5))
+sns.barplot(data=df_cleaned, ax=ax,x='sector', y='prog total', hue='year', estimator=sum, order=df_cleaned['sector'].unique())
+fig.tight_layout()
+st.write("## **Total de recursos programados por sector, por año:**")
+st.pyplot(fig)
+
+fig, ax = plt.subplots(figsize=(12, 5))
+sns.barplot(data=df_cleaned, x='sector', ax=ax,y='ejec total', hue='year', estimator=sum, order=df_cleaned['sector'].unique())
+st.write("## **Total de recursos ejecutados por sector, por año:**")
+st.pyplot(fig)
+
+fig, ax = plt.subplots(figsize=(12, 5))
+sns.histplot(data=df_cleaned, ax=ax,x='rango calificación', hue='year', multiple="dodge", shrink=.8)
+st.write("## **Cantidad de productos por calificación, por año:**")
+st.pyplot(fig)
+
+df_salud = df_cleaned[df_cleaned['sector'] == 'a.2. salud'].copy()
+df_salud['rec_diff'] = df_salud['prog total'] - df_salud['ejec total']
+
+fig, ax = plt.subplots(figsize=(15,5))
+graph = sns.barplot(data=df_salud, ax=ax,x='resultado', y='rec_diff', hue='orientacion', estimator=np.mean)
+for item in graph.get_xticklabels():
+    item.set_rotation(90)
+st.write("## **SECTOR SALUD:**")
+st.pyplot(fig)
