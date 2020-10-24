@@ -3,11 +3,15 @@
 Present historical information of the development plan of the municipality of Bello - Antioquia to facilitate the vision, and support the management of its administration.
 
 ## Arquitectura 🚀
-
+La arquitectura esta basada en AWS, los servicios utilizados son:
+1. EC2 -> En el cual se alojan los algoritmos principales.
+2. S3 Bucket -> Se almacena el archivo SIEE subido por las alcaldias.
+3. Lambda -> Permite alojar la aplicación que consume la API de Twitter. 
+4. RDS -> Se utiliza una base de datos en Postgress. 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
 Mira **Deployment** para conocer como desplegar el proyecto.
-![Alt text](images/Diagrama.jpg?raw=true "Title")
+![Alt text](images/Diagrama.png?raw=true "Title")
 
 
 
