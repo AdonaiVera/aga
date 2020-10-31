@@ -2,6 +2,20 @@
 
 Present historical information of the development plan of the municipality of Bello - Antioquia to facilitate the vision, and support the management of its administration.
 
+## Installation
+Instalar librerías necesarias para el proyecto
+```
+pip install -r requirements.txt
+pip install -r requirements2.txt
+```
+
+## Run
+Usa este comando para iniciar la app
+```bash
+streamlit run app.py
+```
+
+
 ## Arquitectura 🚀
 La arquitectura esta basada en AWS, los servicios utilizados son:
 1. EC2 -> En el cual se alojan los algoritmos principales.
