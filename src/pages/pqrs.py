@@ -27,7 +27,7 @@ def write():
         
     if tags:
         with st.spinner("Analizando los PQRS de tu municipio: "):
-            path = 'https://raw.githubusercontent.com/AdonaiVera/Bello/master/consolidado_general_con_sectores.csv'
+            path = 'https://raw.githubusercontent.com/AdonaiVera/Bello/master/Data/consolidado_general_con_sectores.csv'
                         
             consolidado_general_sectores=pd.read_csv(path)
             
@@ -42,7 +42,7 @@ def write():
             
             fig.update_xaxes(type='category')
             st.plotly_chart(fig)
-            path = 'https://raw.githubusercontent.com/AdonaiVera/Bello/master/consolidado_general_con_sectores_modelos.csv'
+            path = 'https://raw.githubusercontent.com/AdonaiVera/Bello/master/Data/consolidado_general_con_sectores_modelos.csv'
 
             consolidado_general_sectores_modelos=pd.read_csv(path)
             consolidado_general_sectores_modelos = consolidado_general_sectores_modelos.replace({pd.np.nan:''})
