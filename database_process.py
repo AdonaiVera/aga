@@ -30,7 +30,7 @@ class DATABASE:
         mydb.commit()
         mycursor.close()
         mydb.close()
-
+        
     #===================================#
     #     Postgres data writer          #
     #===================================#

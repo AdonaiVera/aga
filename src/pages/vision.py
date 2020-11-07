@@ -9,7 +9,7 @@ from database_process import DATABASE
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
-
+from terridata_proces import terridata
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 
 
@@ -79,7 +79,16 @@ def write():
             sns.barplot(data=df_cleaned, x='sector', ax=ax,y='ejec_total', hue='year', estimator=sum, order=df_cleaned['sector'].unique())
             st.write("## **Total de recursos ejecutados por sector, por año:**")
             st.pyplot(fig)
-                        
+            
+            
+            indicador = st.selectbox("Selecciona el indicador", ['', 'puntaje promedio pruebas saber 11 - lectura critica', 'Embarazo'], format_func=lambda x: 'Selecciona una opción' if x == '' else x)
+            
+            if indicador:
+                with st.spinner("Analizando el indicador {}: ".format(indicador)):
+                
+                    terridata.get_results_td(df_total,nSector,tags,indicador)
+                
+            
     
     tags = None
 

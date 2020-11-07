@@ -12,7 +12,6 @@ logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 def write():
     """Writes content to the app"""
     ast.shared.components.title_awesome("Análisis Twitter")
-    st.sidebar.title("Resources")
     tags = ast.shared.components.multiselect(
         "Selecciona un sector", options=['Salud', 'Medio ambiente', 'Educación', 'Seguridad'], default=[]
     )

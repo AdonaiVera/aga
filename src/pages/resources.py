@@ -46,10 +46,10 @@ def write():
         if bBandera:
             st.info(__doc__)
             st.markdown(STYLE, unsafe_allow_html=True)
-            file = st.file_uploader("Sube el archivo del SIEE", type=["csv"])
+            file = st.file_uploader("Sube el archivo del SIEE", type=["xlsx"])
             show_file = st.empty()
             if not file:
-                show_file.info("Por favor sube el archivo en formato: " + ", ".join(["csv"]))
+                show_file.info("Por favor sube el archivo en formato: " + ", ".join(["xlsx"]))
                 return
 
             
@@ -103,15 +103,7 @@ def write():
                 
                 st.write("## **Avance segmentado por sector {}:**".format(author))
                 st.pyplot(fig)
-                
-                test_df = df_total.dropna(subset=['rango_calificacion'])
-                test_df = test_df[test_df['year'].isin(years) == True]
-                fig, ax = plt.subplots(figsize=(12, 5))
-                sns.histplot(data=test_df, x='rango_calificacion', hue='year', multiple="dodge", shrink=.8)
-                
-                st.write("## **Rango de clasificación por años:**")
-                st.pyplot(fig)
-                
+                                
                 
                 df_cleaned = df_total[df_total['sector'] == nSector].copy()
                 df_cleaned = df_cleaned[df_cleaned['year'].isin(years) == True]
@@ -121,8 +113,6 @@ def write():
                 st.pyplot(fig)
                 
                
-                
-
     
     tags = None
     
