@@ -38,7 +38,7 @@ def write():
             a.reset_index(inplace=True)
             a=a.rename(columns={'year':'Año','Medio':'Cantidad de quejas'})
             
-            fig = px.bar(a,x='Año',y='Cantidad de quejas', facet_col='sector',color_discrete_sequence=["lightseagreen"], title='Cantidad de quejas en total por año y sector de interés', labels=dict(x="Año", y="Cantidad de quejas", color="Place", ))
+            fig = px.bar(a,x='Año',y='Cantidad de quejas', facet_col='sector',color_discrete_sequence=["lightseagreen"], title='Cantidad de quejas en total por año y sector de interés', labels=dict(x="Año", y="Cantidad de quejas", color="Place", ),height=600, width=800)
             
             fig.update_xaxes(type='category')
             st.plotly_chart(fig)
@@ -48,7 +48,7 @@ def write():
             consolidado_general_sectores_modelos = consolidado_general_sectores_modelos.replace({pd.np.nan:''})
              
             nlp=nlp_pqr(consolidado_general_sectores_modelos)
-                    
+            nlp.patrones(tags)
             nlp.palabras_ngramas(tags)
             with st.spinner("Analizando a mucho mas detalle tus datos ..."):
                 nlp.lda_model(tags)

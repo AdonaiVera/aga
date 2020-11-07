@@ -86,23 +86,43 @@ class nlp_pqr:
         self.n= [(r'consiliacion','consiliación'),(r'reposicion','reposición'),(r'matricula','matrícula'),(r'practicas','prácticas'),(r'ocupacion','ocupación'),(r'construccion','construcción'),(r'instalacion','instalación'),(r'invasion','invasión'),(r'rapidas','rápidas'),(r'prescripcion','prescripción'),(r'escenarios','escenario'),(r'vinculacion','vinculación'),(r'cesantias','cesantías'),(r'cesantia','cesantias'),(r'reclamacion','reclamación'),(r'economica','económica'),(r'pension','pensión'),(r'evaluacion','evaluación'),(r'arboles','arbol'),(r'certificados','certificado'),(r'certificacion','certificado'),(r'sanitaria','sanitario'),(r'capacitacion','capacitación'),(r'acompanamiento','acompañamiento'), (r'ninas','niñas'),(r'donacion','donación'),(r'analisis','análisis'),(r'autorizacion','autorización'),(r'examenes','exámenes'),(r'renovacion','renovación'),(r'inclusion','inclusión'),(r'economico','económico'),(r'atencion','atención'),(r'informacion','información'),(r'tecnica','técnica'),(r'canicas','canecas'),(r'esterilizacion','esterilización'),(r'organico','órganico'),(r'disposicion','disposición'),(r'prestamo','prestámo'),(r'recoleccion','recolección'),(r'extension','extensión'),(r'critico','crítico'),(r'problematica','problemática'),(r'ecologico','ecológico'), (r'intervencion','intervención'),(r'bario','barrio'),(r'basuras','basura'), (r'árboles','árbol'),(r'arbol','árbol'),(r'arboles','árbol')]
         
       
+    ########################################
+    #          NUEVO
+    #########################################
     def patrones(self, sector):
 
+        lista_corr=[(r'bario','barrio'), (r'ambiental','ambiente'), (r'sanitariovisita','sanitario visita'), (r'favorablevisita','favorable visita')]
+        STOPWORDS=["espacio","permiso","horario","extension","visita","informacion","derecho","peticion", "favorable", "comprendo", "concepto", "definitiva","definitivas"]
+        stopwords = set(STOPWORDS)
+        stopwords.update(["poner"])
         df=self.df
         df=df[df.sector==sector]
         df.reset_index(inplace=True, drop=True)
-        lista_stop_words=self.lista_sw
+
+        def s_correction( text, patterns):
+            patterns1 = [(re.compile(regex), repl) for (regex, repl) in   patterns]
+            s = text
+            for (pattern, repl) in patterns1:
+                (s, count) = re.subn(pattern, repl, s)
+            return s
+
+        df['Contenido0']=df['Contenido0'].apply(lambda x: s_correction(x, lista_corr))
+        df['Contenido0']=df['Contenido0'].apply(lambda x: x.split())
         lista_mensajeuser=[]
         for i in range(len(df)):
             lista_mensajeuser+=df['Contenido0'][i]
-        long_string=''.join(lista_mensajeuser)
+        long_string=','.join(lista_mensajeuser)
         #Creacion lista stop words
-        wordcloud = WordCloud(background_color="white",min_font_size=5, max_font_size=150, max_words=600, contour_width=50, contour_color='steelblue', margin=15, stopwords=lista_stop_words)
+        wordcloud = WordCloud(width=1000, height=500,background_color="white",min_font_size=3, max_font_size=150, max_words=700, contour_width=80, contour_color='steelblue', margin=15, stopwords=stopwords)
         #Crear el word cloud
         wordcloud.generate(long_string)
         #Visualizar el word cloud
-        st.write("## **Mapa de puntos:**")
-        st.write(wordcloud.to_image())
+        plt.figure(figsize=(15,10))
+        plt.imshow(wordcloud, interpolation='bilinear', resample=True)
+        plt.axis("off")
+        st.set_option('deprecation.showPyplotGlobalUse', False)
+        st.write("**Nube de palabras sector {}:**".format(sector))
+        st.pyplot()
         
 
     def palabras_ngramas(self,sector):
@@ -494,7 +514,7 @@ class nlp_pqr:
             components.v1.html(string_html, width=1400, height=850, scrolling=True)
 
 
-            cols = [color for name, color in mcolors.TABLEAU_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
+            cols = [color for name, color in mcolors.XKCD_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
 
             cloud = WordCloud(stopwords=lista_stop_words,
                           background_color='white',
@@ -545,7 +565,7 @@ class nlp_pqr:
             components.v1.html(string_html, width=1400, height=850, scrolling=True)
 
 
-            cols = [color for name, color in mcolors.TABLEAU_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
+            cols = [color for name, color in mcolors.XKCD_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
 
             cloud = WordCloud(stopwords=lista_stop_words,
                           background_color='white',
@@ -596,7 +616,7 @@ class nlp_pqr:
             components.v1.html(string_html, width=1400, height=850, scrolling=True)
 
 
-            cols = [color for name, color in mcolors.TABLEAU_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
+            cols = [color for name, color in mcolors.XKCD_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
 
             cloud = WordCloud(stopwords=lista_stop_words,
                           background_color='white',
@@ -647,7 +667,7 @@ class nlp_pqr:
             components.v1.html(string_html, width=1400, height=850, scrolling=True)
 
 
-            cols = [color for name, color in mcolors.TABLEAU_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
+            cols = [color for name, color in mcolors.XKCD_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
 
             cloud = WordCloud(stopwords=lista_stop_words,
                           background_color='white',
@@ -678,3 +698,31 @@ class nlp_pqr:
             st.set_option('deprecation.showPyplotGlobalUse', False)
             st.write("Topicos de xxkfoejfoewjfowe")
             st.pyplot()
+
+
+    def experiencia_user(self, sector):
+
+        df=self.df
+        df=df[df.sector==sector]
+
+        def polaridad(x):
+            return np.nan if str(x) == '' else clf.predict(x)
+        df['polaridad_usuario'] = df['texto_completo'].apply(polaridad)
+
+        #Asignacion del sentimiento
+        df['sentimiento_cliente'] = df['polaridad_usuario'].apply(lambda x:'Negativos' if x<=0.4 else('Positivos' if x>=0.65 else 'Neutrales'))
+        names = 'Negativos', 'Positivos', 'Neutrales'
+
+        b = len(df[df.sentimiento_cliente=='Positivos'])
+        a = len(df[df.sentimiento_cliente=='Negativos'])
+        c = len(df[df.sentimiento_cliente=='Neutrales'])
+
+        sizes=[a, b, c]
+
+        df0=pd.DataFrame()
+        df0['experiencia']=[ 'Negativos', 'Positivos', 'Neutrales']
+        df0['cantidad']=sizes
+
+        fig = px.pie(df0, values='cantidad', names='experiencia',hole=0.5,title='ANÁLISIS DE LA PERCEPCIÓN DEL USUARIO EN EL SECTOR:'+' '+str.upper(sector),color_discrete_sequence=["lightseagreen","palegoldenrod","darkseagreen"])
+        
+        st.pyplot(fig)
