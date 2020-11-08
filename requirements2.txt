@@ -10,7 +10,7 @@ async-generator==1.10
 attrs==20.2.0
 autoflake==1.4
 autopep8==1.5.2
--e git+https://github.com/AdonaiVera/Bello.git@286e05637d8906c5d9119dcfff7249da3a2bab51#egg=awesome_streamlit&subdirectory=package
+-e git+https://github.com/AdonaiVera/Bello.git@7056857367be94f69d8148d9fb5bd3cc30329c77#egg=awesome_streamlit&subdirectory=package
 Babel==2.8.0
 backcall==0.2.0
 bandit==1.6.2
@@ -140,7 +140,7 @@ pickleshare==0.7.5
 Pillow==8.0.1
 pkginfo==1.6.1
 plac==0.9.6
-plotly==4.1.0
+plotly==4.11.0
 plotly-express==0.4.1
 pluggy==0.13.1
 preshed==3.0.2
