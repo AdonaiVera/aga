@@ -27,7 +27,9 @@ class DF_prep:
     #===================================#
     def load_file(self, path):
         self.df_long = pd.DataFrame()
-        self.raw_df = pd.read_excel(path)
+        self.raw_df = pd.read_csv(path, sep=';', encoding='iso-8859-1')
+        
+        #self.raw_df = pd.read_excel(path)
         self.__process_df()
 
     #===================================#

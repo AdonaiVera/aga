@@ -13,25 +13,23 @@ def write():
             """
             Con SAM **Haz seguimiento de tu plan de desarrollo** en tiempo real y desde cualquier lugar.
 
-Conoce cómo ha cambiado la distribución de los recursos en el municipio considerando el análisis histórico por areas de interes.
+Conoce como ha ido cambiando la destinación de los recursos del municipio, y el comportamiento de las principales áreas de interés:  Educación, Justicia y Seguridad, Salud y Medio Ambiente.
 
-Conoce cómo se podrían invertir los recursos en los diferentes sectores o poblaciones.
+Conoce cuales son las principales peticiones o solicitudes de la ciudadanía, y cuáles son los temas principales que les interesa comentar en la plataforma Twitter en relación al municipio.
 
 La aplicación permitira responder:
 
-- ¿Cómo ha cambiado la distribución de recursos en el municipio considerando el análisis histórico de los planes de desarrollo de los principales temas: sectores (Educación, Salud, Justicia y Seguridad, Medio Ambiente, etc.)
-- Análisis de los planes de desarrollo, y cumplimiento de metas en cada uno de los periodos, y ver la relación entre los indicadores Relación Eficiencia / Efectividad del plan de desarrollo y calificar el desempeño de la gestión del municipio.
-- ¿Cómo puedo conocer la percepción en tiempo real de las personas que viven en Bello, Antioquia en sectores específicos como Educación, Salud, Justicia y Seguridad y Medio Ambiente?
+- Cómo ha cambiado la distribución de los recursos en el municipio considerando el análisis histórico de los planes de desarrollo, con énfasis en los principales sectores: Educación, Justicia y Seguridad, Salud y Medio Ambiente?
+- Análisis de los planes de desarrollo, y el cumplimiento de las metas en cada uno de los períodos, y ver la relación entre los indicadores Razón Eficiencia / Eficacia del plan de desarrollo y calificar el desempeño de la gestión del municipio.
+- Cómo puedo conocer la percepción en tiempo real de la población que vive en Bello, Antioquia o a través de sus peticiones y solicitudes en las entidades municipales sobre el comportamiento de los sectores específicos como Educación, Salud, Justicia y Seguridad, y Medio Ambiente.
 
 ## La magia de SAM
 
-Genera mapas de calor, e identifica si existe patrones de inversión en un sector específico del municipio.
+Encuentras información de tus indicadores en un solo lugar…
 
-Programa actividades para cumplir tus objetivos.
+Te puedes enterar de que están hablando tus ciudadanos en las redes..
 
-Entérate de lo que hablan tus ciudadanos en redes sociales y asigna tareas .
-
-Analizas los PQRSD de tus ciudadanos de forma automática. Para mas información mira este video:
+Es una plataforma, escalable, y fácil de usar que te permite ver la información desde otra perspectiva, con un alto potencial de crecimiento.
 
 
     """

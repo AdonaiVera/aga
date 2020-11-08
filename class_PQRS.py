@@ -149,12 +149,12 @@ class nlp_pqr:
             words = [w[0] for w in count_dict]
             counts = [w[1] for w in count_dict]
             df0 = pd.DataFrame()
+            x_pos = np.arange(len(words))
             df0['words'] = words
             df0['counts'] = counts
 
             df0 = df0.rename(columns={'words': 'Palabra clave', 'counts': 'Frecuencia'})
-            x_pos = np.arange(len(words))
-
+            
             fig = px.bar(df0, x='Palabra clave', y='Frecuencia', color_discrete_sequence=["lightseagreen","gold","yellowgreen"], title='TÉRMINOS MÁS COMUNES EN:'+' '+segmento,  labels=dict(x="Palabra Clave", y="Frecuencia", color="Place"))
             
             st.plotly_chart(fig)
@@ -511,15 +511,15 @@ class nlp_pqr:
             string_html = pyLDAvis.prepared_data_to_html(data)
                                     
             st.write("Explicación de como entender este grafico")
-            components.v1.html(string_html, width=1400, height=850, scrolling=True)
+            components.v1.html(string_html, width=800, height=700, scrolling=True)
 
 
             cols = [color for name, color in mcolors.XKCD_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
 
             cloud = WordCloud(stopwords=lista_stop_words,
                           background_color='white',
-                          width=1500,
-                          height=800,
+                          width=800,
+                          height=700,
                           max_words=15,
                           colormap='tab10',
                           color_func=lambda *args, **kwargs: cols[i],
@@ -562,15 +562,15 @@ class nlp_pqr:
             string_html = pyLDAvis.prepared_data_to_html(data)
                                     
             st.write("Explicación de como entender este grafico")
-            components.v1.html(string_html, width=1400, height=850, scrolling=True)
+            components.v1.html(string_html, width=800, height=700, scrolling=True)
 
 
             cols = [color for name, color in mcolors.XKCD_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
 
             cloud = WordCloud(stopwords=lista_stop_words,
                           background_color='white',
-                          width=1500,
-                          height=800,
+                          width=800,
+                          height=700,
                           max_words=15,
                           colormap='tab10',
                           color_func=lambda *args, **kwargs: cols[i],
@@ -613,15 +613,15 @@ class nlp_pqr:
             string_html = pyLDAvis.prepared_data_to_html(data)
                                     
             st.write("Explicación de como entender este grafico")
-            components.v1.html(string_html, width=1400, height=850, scrolling=True)
+            components.v1.html(string_html, width=800, height=700, scrolling=True)
 
 
             cols = [color for name, color in mcolors.XKCD_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
 
             cloud = WordCloud(stopwords=lista_stop_words,
                           background_color='white',
-                          width=1500,
-                          height=800,
+                          width=800,
+                          height=700,
                           max_words=15,
                           colormap='tab10',
                           color_func=lambda *args, **kwargs: cols[i],
@@ -664,15 +664,15 @@ class nlp_pqr:
             string_html = pyLDAvis.prepared_data_to_html(data)
                                     
             st.write("Explicación de como entender este grafico")
-            components.v1.html(string_html, width=1400, height=850, scrolling=True)
+            components.v1.html(string_html, width=800, height=700, scrolling=True)
 
 
             cols = [color for name, color in mcolors.XKCD_COLORS.items()]  # more colors: 'mcolors.XKCD_COLORS'
 
             cloud = WordCloud(stopwords=lista_stop_words,
                           background_color='white',
-                          width=1500,
-                          height=800,
+                          width=800,
+                          height=700,
                           max_words=15,
                           colormap='tab10',
                           color_func=lambda *args, **kwargs: cols[i],
@@ -697,7 +697,7 @@ class nlp_pqr:
             plt.tight_layout()
             st.set_option('deprecation.showPyplotGlobalUse', False)
             st.write("Topicos de xxkfoejfoewjfowe")
-            st.pyplot()
+            st.plotly_chart(fig)
 
 
     def experiencia_user(self, sector):
@@ -722,7 +722,9 @@ class nlp_pqr:
         df0=pd.DataFrame()
         df0['experiencia']=[ 'Negativos', 'Positivos', 'Neutrales']
         df0['cantidad']=sizes
-
+        
+        fig, ax = plt.subplots(figsize=(12, 5))
         fig = px.pie(df0, values='cantidad', names='experiencia',hole=0.5,title='ANÁLISIS DE LA PERCEPCIÓN DEL USUARIO EN EL SECTOR:'+' '+str.upper(sector),color_discrete_sequence=["lightseagreen","palegoldenrod","darkseagreen"])
         
-        st.pyplot(fig)
+        st.plotly_chart(fig)
+        

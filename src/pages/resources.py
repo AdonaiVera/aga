@@ -46,17 +46,17 @@ def write():
         if bBandera:
             st.info(__doc__)
             st.markdown(STYLE, unsafe_allow_html=True)
-            file = st.file_uploader("Sube el archivo del SIEE", type=["xlsx"])
+            file = st.file_uploader("Sube el archivo del SIEE", type=["csv"])
             show_file = st.empty()
             if not file:
-                show_file.info("Por favor sube el archivo en formato: " + ", ".join(["xlsx"]))
+                show_file.info("Por favor sube el archivo en formato: " + ", ".join(["csv"]))
                 return
 
             
         with st.spinner("Analizando tu data en segundos  ..."):
 
             years = st.multiselect(
-                "Selecciona los años que deseas visualizar", options=['2016', '2017', '2018', '2019'], default=[]
+                "Selecciona los años que deseas visualizar", options=['2016', '2017', '2018', '2019'], default=['2016', '2017', '2018', '2019']
             )
 
             author = st.selectbox("Selecciona un sector", options=['Salud', 'Medio ambiente', 'Educación', 'Seguridad'])
@@ -71,7 +71,7 @@ def write():
                    cleaner_obj.load_file(file)
                    df_total_x = cleaner_obj.get_concat_df()
                    bBandera = False
-                st.dataframe(df_total_x.head(10))
+                
                 fig, ax = plt.subplots(figsize=(12, 5))
                 
                 if author == 'Salud':
