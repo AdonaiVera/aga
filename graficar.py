@@ -76,7 +76,7 @@ class graph_sam:
 
     def clasificacion(df_total, df_sectors):
         r_cal = df_total.groupby('rango_calificacion')['producto'].count().sort_index().reset_index()['rango_calificacion'].tolist()
-        sectors = [df_sectors.set_index('sector').at[x, 'nombre_corto'] for x in sorted(df_total.sector.unique().tolist())]
+        #sectors = [df_sectors.set_index('sector').at[x, 'nombre_corto'] for x in sorted(df_total.sector.unique().tolist())]
         years = sorted(df_total.year.unique().tolist())
         colors = {
             0 : 'rgb(69, 13, 84)',

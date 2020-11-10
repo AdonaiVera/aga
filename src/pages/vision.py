@@ -51,6 +51,7 @@ def write():
             df_total['ratio_avance'] = df_total['valor_esperado'] / df_total['valor_ejecutado']
             df_general = df_total[df_total['year'].isin(tags) == True]
             
+            
             sector_list = sorted(df_general.sector.unique().tolist())
             df_sectors = db_obj.db_read('SELECT sector, nombre_corto FROM sectors')
             sector_labels = [df_sectors.set_index('sector').at[x, 'nombre_corto'] for x in sector_list]
@@ -71,7 +72,7 @@ def write():
             sector_labels = [df_sectors.set_index('sector').at[x, 'nombre_corto'] for x in sector_list]
 
             year_labels = [str(int(x)) for x in sorted(df_salud.year.unique().tolist())]
-
+            
             graph_sam.plotly_bars(df_salud, 'sector', 'ratio_avance', 'year', year_labels, sector_labels, 'mean', '', 'Percent [%]')
             
             
