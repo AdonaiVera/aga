@@ -5,6 +5,9 @@ from sqlalchemy import create_engine, text
 from textblob import TextBlob
 import pandas as pd
 import streamlit as st
+from classifier import *
+clf = SentimentClassifier()
+
 
 # Override tweepy.StreamListener to add logic to on_status
 class TwStreamListener(tweepy.StreamListener):
@@ -18,20 +21,20 @@ class TwStreamListener(tweepy.StreamListener):
 
     auth  = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
     runtime = 10
-
-    
     
     def __init__(self):
+        
         '''
         Check if this table exits. If not, then create a new one.
         '''
         try:
-            TABLE_NAME = "twitter"
+            TABLE_NAME = "twitter_deep"
             TABLE_ATTRIBUTES = "id_str VARCHAR(255), created_at timestamp, text VARCHAR(255), \
             polarity INT, subjectivity INT, user_created_at VARCHAR(255), user_location VARCHAR(255), \
             user_description VARCHAR(255), user_followers_count INT, longitude double precision, latitude double precision, \
-            retweet_count INT, favorite_count INT"
-
+            retweet_count INT, favorite_count INT, municipality VARCHAR(255), sector VARCHAR(255), emotions VARCHAR(255)"
+            
+            self.sector = ""
             self.start_time = time.time()
             self.limit_time = self.runtime
             self.engine.connect()
@@ -76,7 +79,7 @@ class TwStreamListener(tweepy.StreamListener):
         sentiment = TextBlob(text).sentiment
         polarity = sentiment.polarity
         subjectivity = sentiment.subjectivity
-        
+ 
         user_created_at = status.user.created_at
         #print("User Location: ", status.user.location)
         user_location = self.deEmojify(status.user.location)
@@ -92,28 +95,32 @@ class TwStreamListener(tweepy.StreamListener):
             
         retweet_count = status.retweet_count
         favorite_count = status.favorite_count
-        if polarity == 0:
-            estado = "Neutro"
-        elif polarity == 1:
-            estado = "Feliz"
+        
+        # Check the emotions.
+        text = self.clean_tweet(text)
+        nSentimental = clf.predict(text)
+        
+        if nSentimental>=0.7:
+            estado = "Positivo"
+        elif nSentimental<=0.5:
+            estado = "Negativo"
         else:
-            estado = "Triste"
-            
-        st.write("Twitter: {}, estado: {}".format(status.text, estado))
-        #print("Long: {}, Lati: {}".format(longitude, latitude))
+            estado = "Neutro"
+   
+        
         
         # Store all data in Postgres
         try:
             '''
             Check if this table exits. If not, then create a new one.
             '''
-            TABLE_NAME = "twitter"
+            TABLE_NAME = "twitter_deep"
             self.engine.connect()
             self.mydb = self.engine.raw_connection()
             self.mycursor = self.mydb.cursor()
-            sql = "INSERT INTO {} (id_str, created_at, text, polarity, subjectivity, user_created_at, user_location, user_description, user_followers_count, longitude, latitude, retweet_count, favorite_count) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)".format(TABLE_NAME)
+            sql = "INSERT INTO {} (id_str, created_at, text, polarity, subjectivity, user_created_at, user_location, user_description, user_followers_count, longitude, latitude, retweet_count, favorite_count, municipality, sector, emotions) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)".format(TABLE_NAME)
             val = (id_str, created_at, text, polarity, subjectivity, user_created_at, user_location, \
-                user_description, user_followers_count, longitude, latitude, retweet_count, favorite_count)
+                user_description, user_followers_count, longitude, latitude, retweet_count, favorite_count, "Bello", self.sector, estado)
             
             self.mycursor.execute(sql, val)
             self.mydb.commit()
@@ -161,9 +168,12 @@ class TwStreamListener(tweepy.StreamListener):
         #return print("Stop Streaming")
     
     def run(self, TRACK_WORDS, LOCATION_SEARCH):
+        self.sector = TRACK_WORDS[0]
         #print("Start Streaming")
-        # Languaje Español: es 
+        # Languaje Español: es
         self.myStream.filter(languages=["es"], track = TRACK_WORDS, locations = LOCATION_SEARCH)
+        
+        
         time.sleep(self.runtime)
         self.disconnect()
         return None
