@@ -7,7 +7,8 @@ import pandas as pd
 import streamlit as st
 from classifier import *
 clf = SentimentClassifier()
-
+import googletrans
+from googletrans import Translator
 
 # Override tweepy.StreamListener to add logic to on_status
 class TwStreamListener(tweepy.StreamListener):
@@ -21,6 +22,12 @@ class TwStreamListener(tweepy.StreamListener):
 
     auth  = tweepy.OAuthHandler(API_KEY, API_SECRET_KEY)
     runtime = 10
+    
+    def en_translation(x):
+        translate=translator.translate(x, dest='en')
+        translate=translate.text
+        return translate
+    
     
     def __init__(self):
         
@@ -107,6 +114,8 @@ class TwStreamListener(tweepy.StreamListener):
         else:
             estado = "Neutro"
    
+        text_english = en_translation(text)
+        
         
         
         # Store all data in Postgres
