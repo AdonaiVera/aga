@@ -79,7 +79,24 @@ class TwStreamListener(tweepy.StreamListener):
         '''
         Extract info from tweets
         '''
- 
+        def get_sentiment(model,text):
+            text = punctuation(text)
+            #tokenize
+            twt = token.texts_to_sequences([text])
+            twt = sequence.pad_sequences(twt, maxlen=max_len, dtype='int32')
+            sentiment = model.predict(twt,batch_size=1,verbose = 2)
+            sent = np.round(np.dot(sentiment,100).tolist(),0)[0]
+            result = pd.DataFrame([sent_to_id.keys(),sent]).T
+            result.columns = ["sentiment","percentage"]
+            result=result[result.percentage !=0]
+            return result
+
+        translator = Translator(service_urls=['translate.google.com'])
+
+        def en_translation(x):
+            translate=translator.translate(x, dest='en')
+            translate=translate.text
+            return translate
         if status.retweeted:
             # Avoid retweeted info, and only original tweets will be received
             return True
@@ -117,7 +134,48 @@ class TwStreamListener(tweepy.StreamListener):
             estado = "Negativo"
         else:
             estado = "Neutro"
-
+   
+        text_english = en_translation(text)
+        
+        path = 'https://raw.githubusercontent.com/AdonaiVera/Bello/master/model/my_model_emtion.h5'
+        
+        model = keras.models.load_model(path)
+        result = get_sentiment(model, text_english)
+        
+        idx = result['percentage'].idxmax()
+        n = result['sentiment'][idx]
+        
+        print(n)
+        if n=='anger':
+            estado = 'Enojado'
+        if n=='boredom':
+            estado = 'desinterés'
+        if n=='empty':
+            estado = 'vacio'
+        if n=='fun':
+            estado = 'diversión'
+        if n=='happiness':
+            estado = 'felicidad'
+        if n=='relief':
+            estado = 'alivio'
+        if n=='neutral':
+            estado = 'neutral'
+        if n=='worry':
+            estado = 'preocupación'
+        if n=='love':
+            estado = 'amor'
+        if n=='sadness':
+            estado = 'tristeza'
+        if n=='surprise':
+            estado = 'sorpresa'
+        if n=='hate':
+            estado = 'odio'
+        if n=='enthusiasm':
+            estado = 'entusiasmo'
+        if n=='joy':
+            estado = 'miedo'
+        if n=='fear':
+            estado = 'disfrute'
         
         
         # Store all data in Postgres

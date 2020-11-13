@@ -12,6 +12,12 @@ plt.style.use('ggplot')
 import plotly.express as px
 import os
 from collections import defaultdict
+import nltk
+nltk.download('punkt')
+from nltk.corpus import stopwords
+nltk.download('stopwords')
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+
 logging.basicConfig(format="%(asctime)s - %(message)s", level=logging.INFO)
 
 def emotion_count(text,vocab):
@@ -38,7 +44,7 @@ def write():
     """Writes content to the app"""
     ast.shared.components.title_awesome("Análisis Twitter")
         
-    tags = st.selectbox("Selecciona tu municipio", options=['Salud', 'Medio ambiente', 'Educación', 'Seguridad'])
+    tags = st.selectbox("Selecciona tu municipio", options = ['Salud', 'Medio ambiente', 'Educacion', 'Seguridad'])
     
 
     author_all = ast.shared.models.Author(name="Todos", url="")
@@ -56,10 +62,10 @@ def write():
             engine = create_engine('postgresql://postgres:vu44qnBW2xQxYXYQNiVv@ds4a-extended.cqwg91rhslbj.us-east-1.rds.amazonaws.com/ds4a_project', max_overflow=20)
             query = 'SELECT * FROM twitter_deep'
             df_total = pd.read_sql(query, engine)
-            
             df_clasificacion = df_total[df_total['sector'] == tags].copy()
             st.write("**Diez ultimos post del sector {}:**".format(tags))
-            st.table(df_clasificacion['text'].head(10))
+            df_clasificacion = df_clasificacion.reset_index(drop=True)
+            st.table(df_clasificacion['text'].tail(10))
             
  
             b = len(df_clasificacion[df_clasificacion['emotions']=='Positivo'])
@@ -154,12 +160,38 @@ def write():
             fig=px.bar( x=df_p.index,color_discrete_sequence=["darkgreen","gold","yellowgreen"], y=df_p.Frecuencia, title='Ámbito de las expresiones utilizadas en twitter: {}'.format(tags),  labels=dict(x="Tipología de las palabras empleadas", y="Frecuencia", color="Place"))
             st.plotly_chart(fig)
             
+            
+            df_cloud = df_total[df_total['sector'] == tags].copy()
+            df_cloud = df_cloud.reset_index(drop=True)
+            df_cloud['text']=df_cloud['text'].apply(lambda x: x.split())
+            
+            
+            lista_mensajeuser=[]
+            for i in range(len(df_cloud)):
+                lista_mensajeuser+=df_cloud['text'][i]
+            long_string=','.join(lista_mensajeuser)
+            #Creacion lista stop words
+            wordcloud = WordCloud(width=1000, height=500,background_color="white",min_font_size=3, max_font_size=150, max_words=700, contour_width=80, contour_color='steelblue', margin=15, stopwords=stopwords.words('spanish') + ['RT','UU', 'EE'])
+            #Crear el word cloud
+            wordcloud.generate(long_string)
+            #Visualizar el word cloud
+            plt.figure(figsize=(15,10))
+            plt.imshow(wordcloud, interpolation='bilinear', resample=True)
+            plt.axis("off")
+            st.set_option('deprecation.showPyplotGlobalUse', False)
+            st.write("**Nube de palabras sector {}:**".format(tags))
+            st.pyplot()
+            
+        
+            
             sentimental = st.selectbox("Selecciona tu municipio", options=['Positivo', 'Negativo', 'Neutro'])
+            
             
             if sentimental:
                 with st.spinner("Analizando tweets {} de tu comunidad ...".format(sentimental)):
                     df_sent = df_clasificacion[df_total['emotions'] == sentimental].copy()
-                    st.table(df_sent['text'].head(10))
+                    df_sent = df_sent.reset_index(drop=True)
+                    st.table(df_sent['text'].tail(10))
                     
                     
             
