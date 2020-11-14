@@ -28,7 +28,7 @@ def main():
 
     page = PAGES[selection]
 
-    with st.spinner(f"Loading {selection} ..."):
+    with st.spinner(f"Cargando {selection} ..."):
         ast.shared.components.write_page(page)
     st.sidebar.title("Problema Principal")
     st.sidebar.info(
@@ -37,7 +37,7 @@ def main():
     st.sidebar.title("Sobre Nosotros")
     st.sidebar.info(
         """
-        Somos .... . Para el diseño de la interfaz nos basamos en el desarrollo open source de Marc Skov Madsen, mas información aqui:
+        Somos un grupo interdisciplinario de profesionales pertenecientes a la cohorte 2020 del programa Data Science for All. Nuestro propósito es aplicar la ciencia de datos junto con el conocimiento de nuestras carreras para buscar soluciones a problemas  presentes en la administración de recursos públicos, especialmente a nivel territorial. Para el diseño de la interfaz nos basamos en el desarrollo open source de Marc Skov Madsen, mas información aqui:
         [datamodelsanalytics.com](https://datamodelsanalytics.com).
 """
     )

@@ -89,7 +89,7 @@ def write():
                 df_total = df_total_x
                 
                 
-                st.write("## **Avance general por sectores y años::**")
+                #st.write("## **Avance general por sectores y años::**")
                 df_total['ratio_avance'] = df_total['valor_esperado'] / df_total['valor_ejecutado']
                 df_general = df_total[df_total['year'].isin(years) == True]
                 
@@ -98,10 +98,10 @@ def write():
                 sector_labels = ['Salud', 'Medio ambiente', 'Educación', 'Seguridad']
                 year_labels = years
        
-                graph_sam.plotly_bars(df_general, 'sector', 'ratio_avance', 'year', year_labels, sector_labels, 'mean', '', 'Percent [%]')
+                #graph_sam.plotly_bars(df_general, 'sector', 'ratio_avance', 'year', year_labels, sector_labels, 'mean', '', 'Percent [%]')
                            
             
-                st.write("## **Avance general por sectores y años::**")
+                #st.write("## **Avance general por sectores y años::**")
                 df_total['ratio_avance'] = df_total['valor_esperado'] / df_total['valor_ejecutado']
                 df_general = df_total[df_total['year'].isin(years) == True]
 
@@ -109,7 +109,7 @@ def write():
 
                 year_labels = years
             
-                graph_sam.plotly_bars(df_general, 'sector', 'ratio_avance', 'year', year_labels, sector_labels, 'mean', '', 'Percent [%]')
+                #graph_sam.plotly_bars(df_general, 'sector', 'ratio_avance', 'year', year_labels, sector_labels, 'mean', '', 'Percent [%]')
 
                 
                 st.write("## **Rango de clasificación por años:**")

@@ -110,7 +110,7 @@ def write():
             
             if indicador:
                 with st.spinner("Analizando el indicador {}: ".format(indicador)):
-                    
+                   
                     terridata_df = df_total[df_total['sector'] == nSector].copy()
                     terridata_df = terridata_df[terridata_df['year'].isin(tags) == True]
                     terridata.get_results_td1(terridata_df,indicador)

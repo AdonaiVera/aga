@@ -54,6 +54,7 @@ class terridata:
 
 
     def get_results_td1(terridata_df_sector, indicadores):
+        st.table(terridata_df_sector)
         terridata_df_m_g = terridata_df_sector[['td_indicador','year','td_ind_value']]
         terridata_df_m_g = terridata_df_m_g[terridata_df_m_g.td_indicador.notnull()]
         if terridata_df_m_g.shape[0] > 0:
