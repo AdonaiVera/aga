@@ -25,7 +25,10 @@ The architecture is based on AWS, the services used are:
 _These instructions will allow you to know which services are used to deploy the entire application._
 
 Check **Deployment** to know how to deploy the project.
-![Alt text](images/Diagrama.png?raw=true "Arquitectura")
+
+<div align="center">
+       <img src="images/Diagrama.png?raw=true" width="400px"</img> 
+</div>
 
 
 
@@ -78,7 +81,8 @@ As our application grows we would refactor our app.py file into multiple folders
 ## Despliegue 📦
 
 Run this command to deploy the app. 
-```docker build -t ds4a 
+```
+docker build -t ds4a 
 docker-compose up -d
 ```
 
