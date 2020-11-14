@@ -102,7 +102,7 @@ def title_awesome(body: str):
     """
     st.write(
         f"# SAM {body} "
-        "[![SAM](https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/robot-face.png)]"
+        "[![SAM](https://github.com/AdonaiVera/Bello/blob/master/images/bot.png?raw=true)]"
         "(https://www.correlation-one.com/ds4a-latam)"
     )
 
