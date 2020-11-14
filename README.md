@@ -102,8 +102,8 @@ En Colombia alcanzan un cargo…
 ## Built with 🛠️
 _Mention the tools you used to create your project_
 
-* [Streamlit](https://github.com/MarcSkovMadsen/awesome-streamlit) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
+* [Streamlit](https://github.com/MarcSkovMadsen/awesome-streamlit) - The best Framework to develop apps
+* [Plotly](https://plotly.com/) - Graphs
 * [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
 
 
