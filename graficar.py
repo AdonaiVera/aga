@@ -54,7 +54,8 @@ class graph_sam:
                         ))
 
         fig.update_layout(
-            title=title,
+            width=750,
+            height=600,
             xaxis_tickfont_size=14,
             yaxis=dict(
                 title=y_title,
@@ -107,7 +108,8 @@ class graph_sam:
                         ))
 
         fig.update_layout(
-            title='',
+            width=750,
+            height=600,
             xaxis_tickfont_size=14,
             yaxis=dict(
                 title='Quantity of products',

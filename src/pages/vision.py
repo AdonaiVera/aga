@@ -47,7 +47,7 @@ def write():
             else:
                 nSector = 18
                         
-            st.write("## **Avance general por sectores y años::**")
+            st.write("## **Avance general por sectores y años:**")
             df_total['ratio_avance'] = df_total['valor_esperado'] / df_total['valor_ejecutado']
             df_general = df_total[df_total['year'].isin(tags) == True]
             

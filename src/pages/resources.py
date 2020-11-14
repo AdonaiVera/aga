@@ -44,6 +44,7 @@ def write():
              """Para continuar por favor **selecciona la fuente de datos que te gustaria analizar**"""
         )
     if tags:
+        
         if bBandera:
             st.info(__doc__)
             st.markdown(STYLE, unsafe_allow_html=True)
@@ -131,19 +132,22 @@ def write():
                 
                 auth_sect = st.selectbox("Selecciona un tipo de grafica para visualizar el presupuesto", options=['Año', 'Sector'])
                 
+        
+                
                 if auth_sect == 'Año':
-                    graph_sam.plotly_bars(df_presupuesto, 'year', 'ejec_total', 'sector', sector_labels, year_labels, 'sum', 'Total resources by Year', 'Billion $COP', b_mode='stack', color='clown')
+                    st.write("## **Total de recursos por año:**")
+                    graph_sam.plotly_bars(df_presupuesto, 'year', 'ejec_total', 'sector', sector_labels, year_labels, 'sum', '', 'Billion $COP', b_mode='stack', color='clown')
                 else:
-                    graph_sam.plotly_bars(df_presupuesto, 'sector', 'ejec_total', 'year', year_labels, sector_labels, 'sum', 'Total resources by Sector and Year', 'Billion $COP')
+                    st.write("## **Total de recursos por sector y año:**")
+                    graph_sam.plotly_bars(df_presupuesto, 'sector', 'ejec_total', 'year', year_labels, sector_labels, 'sum', '', 'Billion $COP')
                     
                     
             
-                
-                
-               
+
     
     tags = None
     
 
 if __name__ == "__main__":
+    
     write()

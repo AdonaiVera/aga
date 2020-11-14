@@ -44,7 +44,7 @@ def write():
     """Writes content to the app"""
     ast.shared.components.title_awesome("Análisis Twitter")
         
-    tags = st.selectbox("Selecciona tu municipio", options = ['Salud', 'Medio ambiente', 'Educacion', 'Seguridad'])
+    tags = st.selectbox("Selecciona el sector que deseas analizar", options = ['Salud', 'Medio ambiente', 'Educacion', 'Seguridad'])
     
 
     author_all = ast.shared.models.Author(name="Todos", url="")
@@ -54,7 +54,7 @@ def write():
     
     if not tags:
         st.info(
-             """Para continuar por favor **selecciona el municipio que te gustaria analizar**"""
+             """Para continuar por favor **selecciona el sector que te gustaria analizar**"""
         )
         
     if tags:
@@ -184,7 +184,7 @@ def write():
             
         
             
-            sentimental = st.selectbox("Selecciona tu municipio", options=['Positivo', 'Negativo', 'Neutro'])
+            sentimental = st.selectbox("Selecciona el estado de animo:", options=['Positivo', 'Negativo', 'Neutro'])
             
             
             if sentimental:

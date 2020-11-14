@@ -68,7 +68,7 @@ As our application grows we would refactor our app.py file into multiple folders
 |       ├── vision.py
 |       └── about.py
 └── Data
-|   └── Data 
+    └── Data 
         ├── consolidado_general_con_sectores_modelos.csv
         ├── consolidado_general_con_sectores.csv
         └── consolidado_para_percepcion.csv
@@ -77,7 +77,10 @@ As our application grows we would refactor our app.py file into multiple folders
 
 ## Despliegue 📦
 
-_Agrega notas adicionales sobre como hacer deploy_
+Run this command to deploy the app. 
+```docker build -t ds4a 
+docker-compose up -d
+```
 
 ## Twitter 🖥
 Here are some examples of twitter in the security area. The Tweet is in the native language of the country where it was implemented, Colombia.
