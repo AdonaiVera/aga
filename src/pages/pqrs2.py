@@ -51,13 +51,15 @@ def write():
             nlp.patrones(tags)
             nlp.palabras_ngramas(tags)
             with st.spinner("Analizando a mucho mas detalle tus datos ..."):
-                
+                nlp.lda_model(tags)
                 
                 with st.spinner("Analizando la percepción de tu ciudadania."):
                     path = 'https://raw.githubusercontent.com/AdonaiVera/Bello/master/Data/consolidado_para_percepcion.csv'
 
-
-                   
+                    consolidado_general_percepcion=pd.read_csv(path)
+                    percept=nlp_pqr(consolidado_general_percepcion)
+                    
+                    percept.experiencia_user(tags)
     
     tags = None
 
