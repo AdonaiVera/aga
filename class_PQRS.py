@@ -122,6 +122,7 @@ class nlp_pqr:
         plt.axis("off")
         st.set_option('deprecation.showPyplotGlobalUse', False)
         st.write("**Nube de palabras sector {}:**".format(sector))
+        st.write("Permite visualizar las palabras más representativas en cada uno de los sectores. ")
         st.pyplot()
         
 
@@ -154,8 +155,9 @@ class nlp_pqr:
             df0['counts'] = counts
 
             df0 = df0.rename(columns={'words': 'Palabra clave', 'counts': 'Frecuencia'})
-            
-            fig = px.bar(df0, x='Palabra clave', y='Frecuencia', color_discrete_sequence=["lightseagreen","gold","yellowgreen"], title='TÉRMINOS MÁS COMUNES EN:'+' '+segmento,  labels=dict(x="Palabra Clave", y="Frecuencia", color="Place"))
+            st.write("**Términos más comunes en {}:**".format(segmento))
+            st.write("Permite visualizar las palabras que aparecen conjuntas, es decir permite contextualizar la palabra, por ejemplo la palabra certificado puede aparecer con: bancario, trabajo, tributario. Por lo tanto, esta gráfica permite estudiar más en detalle los temas que se tratan en cada segmento.")
+            fig = px.bar(df0, x='Palabra clave', y='Frecuencia', color_discrete_sequence=["lightseagreen","gold","yellowgreen"],   labels=dict(x="Palabra Clave", y="Frecuencia", color="Place"))
             
             st.plotly_chart(fig)
 

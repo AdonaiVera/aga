@@ -52,9 +52,9 @@ class terridata:
         array_sector = np.array(lista_espera)
         return array_sector
 
-
+        
     def get_results_td1(terridata_df_sector, indicadores):
-        st.table(terridata_df_sector)
+        
         terridata_df_m_g = terridata_df_sector[['td_indicador','year','td_ind_value']]
         terridata_df_m_g = terridata_df_m_g[terridata_df_m_g.td_indicador.notnull()]
         if terridata_df_m_g.shape[0] > 0:
@@ -62,17 +62,17 @@ class terridata:
         plt.figure(figsize=(10,10))
         x_variable = graph.loc[indicadores,:].T.index
         y_var = graph.loc[indicadores,:].T
-       
+
         #y_variable = y_var[indicadores]
-        fig = px.scatter(graph, x = x_variable, y = y_var,
-                         trendline="lowess",
-                        labels=dict(x="Años", y="Valor"))
+        fig = px.scatter(x = x_variable, y = y_var,
+                      trendline="lowess",
+                     labels=dict(x="Años", y="Valor"))
 
         fig.update_layout(
-            xaxis = dict(
-                tickmode = 'linear',
-                tick0 = 2013,
-                dtick = 1
-            ),
+         xaxis = dict(
+             tickmode = 'linear',
+             tick0 = 2013,
+             dtick = 1
+         ),
         )
         st.plotly_chart(fig)
