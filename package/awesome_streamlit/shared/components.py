@@ -42,6 +42,10 @@ def write_page(page):  # pylint: disable=redefined-outer-name
     """
     # _reload_module(page)
     page.write()
+    
+    
+
+
 
 
 def video_youtube(src: str, width="100%", height=315):

@@ -44,4 +44,4 @@ Es una plataforma, escalable, y fácil de usar que te permite ver la informació
     
        )
        
-        st.video('https://www.youtube.com/watch?v=eFGCyD8kYH0')
+        st.video('https://youtu.be/neUJOnoQENc')
