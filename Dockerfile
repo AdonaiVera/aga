@@ -10,6 +10,6 @@ COPY . .
 
 RUN set eux; \
     pip install requests==2.24.0; \
-    pip install -r requirements.txt;
+    pip install --no-cache-dir -r requirements.txt;
 
 EXPOSE 8501
