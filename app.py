@@ -28,8 +28,8 @@ def main():
 
     page = PAGES[selection]
 
-    with st.spinner(f"Cargando {selection} ..."):
-        ast.shared.components.write_page(page)
+    #with st.spinner(f"Cargando {selection} ..."):
+    ast.shared.components.write_page(page)
     st.sidebar.title("Problema Principal")
     st.sidebar.info(
         "Como entidad territorial - La Alcaldía es la encargada de **administrar los recursos de cada municipio**; y velar por que estos recursos sean utilizados de manera efectiva, para generar bienestar a sus habitantes, así como la articulación con las entidades gubernamentales."
