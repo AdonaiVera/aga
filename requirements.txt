@@ -212,7 +212,7 @@ srsly==1.0.2
 statsmodels==0.12.1
 stevedore==3.2.2
 streamlit==0.69.2
-tensorboard==2.0.2
+tensorboard==2.2.0
 tensorflow==2.2.0
 tensorflow-estimator==2.0.1
 termcolor==1.1.0
