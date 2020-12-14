@@ -60,7 +60,7 @@ def write():
     if tags:
         with st.spinner("Analizando post de tu comunidad en tiempo real en Twitter ..."):
             engine = create_engine('postgresql://postgres:vu44qnBW2xQxYXYQNiVv@ds4a-extended.cqwg91rhslbj.us-east-1.rds.amazonaws.com/ds4a_project', max_overflow=20)
-            query = 'SELECT * FROM twitter_deep'
+            query = 'SELECT * FROM twitter_deep LIMIT 50000'
             df_total = pd.read_sql(query, engine)
             df_clasificacion = df_total[df_total['sector'] == tags].copy()
             st.write("**Diez ultimos post del sector {}:**".format(tags))
