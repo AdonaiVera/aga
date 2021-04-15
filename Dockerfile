@@ -1,4 +1,4 @@
-FROM python:3.8.6-slim
+FROM python:3.10.0a6-slim
 
 RUN set eux; \
     apt-get update; \
